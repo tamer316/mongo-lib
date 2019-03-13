@@ -5,7 +5,7 @@ version := "1.0.0"
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 lazy val commonSettings = Seq(
-  scalaVersion := "2.11.8",
+  scalaVersion := "2.12.8",
   scalastyleFailOnError := true
 )
 
