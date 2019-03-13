@@ -25,13 +25,6 @@ The following applications are installed and running:
       ```
       brew install sbt
       ```
-      
-Installation
-------------
-- Get the latest project
-  ```
-  git clone ssh://git@gitlab.com:me-dev/mongo-lib.git
-  ```
 
 Publishing
 -------
