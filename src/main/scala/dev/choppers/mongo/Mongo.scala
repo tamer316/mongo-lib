@@ -18,7 +18,7 @@ object Mongo {
       val credentials = if (username.isEmpty) {
         Seq.empty
       } else {
-        Seq(Authenticate(databaseName, username, password))
+        Seq(Authenticate(databaseName, username, Some(password)))
       }
 
       val connection = driver.connection(servers, authentications = credentials)

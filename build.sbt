@@ -1,11 +1,11 @@
 name := "mongo-lib"
 organization := "dev.tamer"
-version := "2.0.0"
+version := "2.1.0"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 lazy val commonSettings = Seq(
-  scalaVersion := "2.12.8",
+  scalaVersion := "2.11.8",
   scalastyleFailOnError := true
 )
 
