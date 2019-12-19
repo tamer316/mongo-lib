@@ -133,9 +133,22 @@ class RepositorySpec extends Specification with EmbeddedMongoSpecification {
       Await.result(repository insert document1, 5 seconds)
       Await.result(repository insert document2, 5 seconds)
 
-      Await.result(repository.update(mq"""{key:"1"}""", mq"""{$$set:{key:"3"}}"""), 5 seconds)
+      Await.result(repository.updateOne(mq"""{key:"1"}""", mq"""{$$set:{key:"3"}}"""), 5 seconds)
       val res = Await.result(repository.findById(document1._id), 5 seconds)
       res.get.key mustEqual "3"
+    }
+
+    "update 2 documents" in new Context {
+      val document1 = Example(key = "1")
+      val document2 = Example(key = "2")
+      Await.result(repository insert document1, 5 seconds)
+      Await.result(repository insert document2, 5 seconds)
+
+      Await.result(repository.updateMany(mq"""{}""", mq"""{$$set:{key:"3"}}"""), 5 seconds)
+      val res1 = Await.result(repository.findById(document1._id), 5 seconds)
+      val res2 = Await.result(repository.findById(document2._id), 5 seconds)
+      res1.get.key mustEqual "3"
+      res2.get.key mustEqual "3"
     }
 
     "delete 1 document by Id" in new Context {
