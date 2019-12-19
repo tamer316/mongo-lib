@@ -1,6 +1,6 @@
 name := "mongo-lib"
 organization := "dev.tamer"
-version := "2.2.1"
+version := "2.2.2"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
