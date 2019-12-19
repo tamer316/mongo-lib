@@ -47,12 +47,16 @@ abstract class Repository[T] extends Mongo with JavaDateTimeHandlers {
     findOne(mq"{_id:$objectId}")
   }
 
-  def update(selector: BSONDocument, updateQuery: BSONDocument): Future[Unit] = {
+  def updateOne(selector: BSONDocument, updateQuery: BSONDocument): Future[Unit] = {
     collection.flatMap(_.update(selector, updateQuery).map(_ => {}))
   }
 
+  def updateMany(selector: BSONDocument, updateQuery: BSONDocument): Future[Unit] = {
+    collection.flatMap(_.update(selector, updateQuery, multi = true).map(_ => {}))
+  }
+
   def updateById(objectId: BSONObjectID, updateQuery: BSONDocument): Future[Unit] = {
-    update(mq"{_id:$objectId}", updateQuery)
+    updateOne(mq"{_id:$objectId}", updateQuery)
   }
 
   def deleteById(objectId: BSONObjectID): Future[Unit] = delete(mq"{_id:$objectId}")
